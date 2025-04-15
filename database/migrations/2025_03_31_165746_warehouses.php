@@ -12,6 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         //
+        Schema::create('warehouse', function (Blueprint $table) {
+            $table->id();
+            $table->integer('employee_id')->nullable();
+            $table->string('warehouse_name')->nullable();
+            $table->string('warehouse_address')->nullable();
+            $table->integer('warehouse_type_id')->nullable();
+            $table->integer('route_id')->nullable();
+            $table->boolean('is_active')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
+            $table->timestamps();
+            $table->softDeletes('deleted_at', precision: 0);
+        });
     }
 
     /**
@@ -20,5 +34,6 @@ return new class extends Migration
     public function down(): void
     {
         //
+        Schema::dropIfExists('warehouse');
     }
 };

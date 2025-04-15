@@ -29,7 +29,6 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Section::make('User Details')
-                    ->description('Please fill up the required(*) fields below')
                     ->schema([
                         TextInput::make('name')
                             ->required()

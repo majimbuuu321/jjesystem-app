@@ -12,6 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         //
+        Schema::create('payment_terms', function (Blueprint $table) {
+            $table->id();
+            $table->string('payment_terms')->nullable();
+            $table->boolean('is_active')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
+            $table->timestamps();
+            $table->softDeletes('deleted_at', precision: 0);
+        });
     }
 
     /**
@@ -20,5 +30,6 @@ return new class extends Migration
     public function down(): void
     {
         //
+        Schema::dropIfExists('payment_terms');
     }
 };

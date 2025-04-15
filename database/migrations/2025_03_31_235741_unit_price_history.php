@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('warehouse_type', function (Blueprint $table) {
+        Schema::create('unit_price_history', function (Blueprint $table) {
             $table->id();
-            $table->string('warehouse_type_name')->nullable();
+            $table->date('price_date');
+            $table->integer('product_id')->nullable();
+            $table->decimal('unit_price', 18,2)->nullable();
             $table->boolean('is_active')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
@@ -30,6 +32,5 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('warehouse_type');
     }
 };

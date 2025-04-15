@@ -12,11 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('routes', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name')->nullable();
+            $table->string('middle_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->integer('employee_id')->nullable();
-            $table->string('route_name')->nullable();
-            $table->integer('route_group_id')->nullable();
+            $table->integer('price_code_id')->nullable();
+            $table->integer('payment_terms_id')->nullable();
+            $table->integer('route_id')->nullable();
+            $table->integer('business_channel_id')->nullable();
+            $table->string('store_name')->nullable();
+            $table->string('address')->nullable();
+            $table->string('contact_number')->nullable();
             $table->boolean('is_active')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
@@ -32,6 +40,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('routes');
+        Schema::dropIfExists('customers');
     }
 };

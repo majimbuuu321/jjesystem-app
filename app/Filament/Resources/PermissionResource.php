@@ -28,7 +28,6 @@ class PermissionResource extends Resource
             ->schema([
                 //
                 Section::make('Permission Details')
-                    ->description('Please fill up the required(*) fields below')
                     ->schema([
                         TextInput::make('name')
                         ->required()

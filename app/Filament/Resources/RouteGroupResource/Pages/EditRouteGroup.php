@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\UserResource\Pages;
+namespace App\Filament\Resources\RouteGroupResource\Pages;
 
-use App\Filament\Resources\UserResource;
+use App\Filament\Resources\RouteGroupResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Notifications\Notification;
-class EditUser extends EditRecord
+class EditRouteGroup extends EditRecord
 {
-    protected static string $resource = UserResource::class;
+    protected static string $resource = RouteGroupResource::class;
 
     // protected function getHeaderActions(): array
     // {
@@ -26,7 +26,14 @@ class EditUser extends EditRecord
 
     protected function getSavedNotification(): ?Notification {
         return Notification::make()
-                 ->success()
-                ->title('User is successfully updated.');
+            ->success()
+            ->title('Route Group is successfully updated.');
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data['updated_by'] = auth()->id();
+
+        return $data;
     }
 }

@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('warehouse_type', function (Blueprint $table) {
+        Schema::create('units', function (Blueprint $table) {
             $table->id();
-            $table->string('warehouse_type_name')->nullable();
+            $table->string('unit_code')->nullable();
+            $table->string('unit_name')->nullable();
             $table->boolean('is_active')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
@@ -30,6 +31,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('warehouse_type');
+        Schema::dropIfExists('units');
     }
 };
