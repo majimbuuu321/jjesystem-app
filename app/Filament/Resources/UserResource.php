@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
+use App\Models\Employee;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,6 +17,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\Section;
+use Illuminate\Support\Facades\DB;
+use Filament\Support\RawJs;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
@@ -30,10 +33,26 @@ class UserResource extends Resource
             ->schema([
                 Section::make('User Details')
                     ->schema([
-                        TextInput::make('name')
-                            ->required()
-                            ->maxLength(255)
-                            ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
+                        Select::make('name')
+                            ->label('Employee Name')
+                            ->preload()
+                            ->options(Employee::select(
+                                DB::raw("CONCAT(ifnull(first_name, ''), ' ', ifnull(middle_name, ''), ' ' ,ifnull(last_name, '')) AS name"))
+                                ->where('is_active', 1)
+                                ->pluck('name', 'name'))
+                            ->searchable()
+                            ->required(),
+
+                        // Select::make('name')
+                        //     ->label('Employee Name')
+                        //     ->preload()
+                        //     ->options(Employee::select(
+                        //         DB::raw("CONCAT(first_name, ' ' , middle_name, ' ' ,last_name) AS name"))
+                        //         ->where('is_active', 1)
+                        //         ->pluck('name', 'name'))
+                        //     ->searchable()
+                        //     ->required(),
+                            
                         TextInput::make('email')
                             ->email()
                             ->required()
@@ -45,10 +64,11 @@ class UserResource extends Resource
                             ->revealable()
                             ->visibleOn('create'),
                         
-                        Select::make('roles')
-                            ->multiple()
+                            Select::make('roles')
                             ->relationship('roles', 'name')
+                            ->multiple()
                             ->preload()
+                            ->searchable(),
                     ])
             ]);
     }

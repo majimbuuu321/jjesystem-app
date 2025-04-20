@@ -23,7 +23,7 @@ class WarehouseTypeResource extends Resource
     protected static ?string $model = WarehouseType::class;
 
     protected static ?string $navigationIcon = 'heroicon-m-tag';
-    protected static ?string $navigationGroup = 'Inventory Management';
+    protected static ?string $navigationGroup = 'Route & Warehouse Management';
     protected static ?int $navigationSort = 4;
     public static function form(Form $form): Form
     {

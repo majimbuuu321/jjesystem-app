@@ -23,7 +23,7 @@ class RouteGroupResource extends Resource
     protected static ?string $model = RouteGroup::class;
 
     protected static ?string $navigationIcon = 'heroicon-m-tag';
-    protected static ?string $navigationGroup = 'Inventory Management';
+    protected static ?string $navigationGroup = 'Route & Warehouse Management';
     protected static ?int $navigationSort = 2;
     public static function form(Form $form): Form
     {

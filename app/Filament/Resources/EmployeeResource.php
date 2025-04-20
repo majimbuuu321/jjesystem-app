@@ -20,6 +20,8 @@ use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Forms\Components\Textarea;
+
 class EmployeeResource extends Resource
 {
     protected static ?string $model = Employee::class;
@@ -58,7 +60,7 @@ class EmployeeResource extends Resource
                         ]),
                         Grid::make(1)
                         ->schema([
-                            TextInput::make('address')
+                            TextArea::make('address')
                             ->required()
                             ->label('Address')
                             ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
