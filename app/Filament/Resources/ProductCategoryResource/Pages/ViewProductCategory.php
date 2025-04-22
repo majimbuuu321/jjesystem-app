@@ -10,6 +10,14 @@ class ViewProductCategory extends ViewRecord
 {
     protected static string $resource = ProductCategoryResource::class;
 
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\EditAction::make()
+            ->label('Edit Product Category'),
+        ];
+    }
+
     protected function getAllRelationManagers(): array
     {
         return [

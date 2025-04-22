@@ -22,7 +22,7 @@ class CreateProducts extends CreateRecord
     {
         CostHistory::create([
             'price_date' => $this->record->price_date,
-            'product_id' => $this->record->id,
+            'products_id' => $this->record->id,
             'unit_cost' => $this->record->unit_cost,
             'created_by' => auth()->id(),
             'created_at' => now()
