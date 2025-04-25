@@ -38,7 +38,6 @@ class RouteGroupResource extends Resource
                             ->extraInputAttributes(['onInput' => 'this.value = this.value.toUpperCase()']),
                         
                         ToggleButtons::make('is_active')
-                            ->label('Is Active?')
                             ->boolean()
                             ->required()
                             ->label('Status')
